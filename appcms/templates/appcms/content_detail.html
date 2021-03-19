@@ -1,0 +1,22 @@
+{% extends 'appcms/base.html' %}
+{% block content %}
+
+<div class="container mt-2" >
+    <div class="card">
+        <h5 class="card-header">{{ content.title }}</h5>
+        <div class="card-body">
+         
+          <p class="card-text">{{content.body}}</p>
+          <h5 class="card-title">{{content.summary}}</h5>
+          {% if content.author == request.user %}
+            <div>
+              <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'contentUpdate' content.id %}">Update</a>
+              <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'contentDelete' content.id %}">Delete</a>
+          </div>
+          {% endif %}
+         
+        </div>
+      </div>
+</div>
+
+{% endblock content %}

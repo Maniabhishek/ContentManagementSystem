@@ -1,0 +1,36 @@
+<!-- {% load crispy_forms_tags %}
+<div class="container mx-auto">
+    <form action="" method="POST"> 
+        {% csrf_token %}
+        {{form.email}}
+        {{form.password}}
+        
+      
+        <button class="btn btn-outline-info ">Signin</button>
+    </form>
+    <h1>need an Account <a href="{% url 'register' %}">Sign Up Here</a></h1>
+</div>
+ -->
+ <div class="login-form">
+    <div class='justify-content-center'>
+    <form method="POST">
+        {% csrf_token %}
+       
+       <div class="form-group">
+          <label>Email</label><br>
+          <input type="email" name="email" class="form-control" placeholder="Email">
+       </div>
+       <div class="form-group">
+          <label>Enter Password</label><br>
+         
+          <input type="password" name="password" class="form-control" placeholder="Password">
+       </div>
+       
+       <button type="submit" class="btn btn-black">Login</button>
+       <a href="{% url 'register' %}" class="btn btn-secondary">Register</a><br>
+       {% for message in messages %}
+       {{message}}
+       {% endfor %}
+    </form>
+   </div>
+ </div>
