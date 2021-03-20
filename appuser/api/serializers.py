@@ -6,6 +6,8 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+# this serializer class will validate all the users phone and pincode
+
 
 class ProfileSerializer(ModelSerializer):
     class Meta:
@@ -32,6 +34,8 @@ class ProfileSerializer(ModelSerializer):
             raise ValidationError(
                 {'Please Check your phone number abc': 'check your pincode'})
         return value
+
+# UserSerializer is for registraion purpose that will valiate the password (atleast one uppercase and one lowercase)
 
 
 class UserSerializer(ModelSerializer):

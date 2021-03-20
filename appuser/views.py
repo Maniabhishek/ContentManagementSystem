@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from .decorators import unauthenticated
 # Create your views here.
 
+# this method is for registration there is another registration method for api
+
 
 @unauthenticated
 def register(request):
@@ -18,12 +20,7 @@ def register(request):
         print("try")
         form = CreateUser_Register(request.POST)
         profile_form = ProfileForm(request.POST)
-        # formUserProfile = UserPhonePin(request.POST)
         print("formbefore")
-
-        # password1 = form.cleaned_data.get('password1')
-        # password2 = form.cleaned_data.get('password2')
-        # print("passwords are=", password1, password2)
         if form.is_valid() and profile_form.is_valid():
             print("isvalid ")
             user = form.save()
@@ -33,9 +30,6 @@ def register(request):
             print("username")
             username = form.cleaned_data.get('username')
             password1 = form.cleaned_data.get('password1')
-            # Profile.objects.create(user_author=user, =.phone)
-            # phone = formUserProfile.cleaned_data.get('phone')
-            # print(phone)
             print("username=", password1)
             return redirect('loggin')
         else:
@@ -45,6 +39,8 @@ def register(request):
     profile_form = ProfileForm()
     context = {'form': form, 'profile_form': profile_form}
     return render(request, 'appuser/register.html', context)
+
+# this method will log in to account
 
 
 @unauthenticated

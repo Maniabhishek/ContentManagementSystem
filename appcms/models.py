@@ -6,6 +6,8 @@ from django.utils import timezone
 from django.core.validators import FileExtensionValidator
 # Create your models here.
 
+# this is our django content model to store all the required fields
+
 
 class Content(models.Model):
     CATEGORY = (

@@ -1,6 +1,8 @@
 from rest_framework import permissions
 from rest_framework.permissions import BasePermission
 
+# this class will findout if the user has permission to delete or update the post , to check if logged in user and post owner is same or not
+
 
 class IsOwnerOrReadOnly(BasePermission):
     message = "you must be the owner of this post "

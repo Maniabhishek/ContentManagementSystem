@@ -5,6 +5,8 @@ from rest_framework.permissions import AllowAny
 
 User = get_user_model()
 
+# this API view for creating the user this allows anyone to register or create the user
+
 
 class UserCreateAPIView(CreateAPIView):
     queryset = User.objects.all()

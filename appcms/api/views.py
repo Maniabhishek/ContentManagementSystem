@@ -21,12 +21,12 @@ from appuser.models import Profile
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import (
-    AllowAny,
     IsAuthenticated,
-    IsAdminUser,
     IsAuthenticatedOrReadOnly
 )
 from .permissions import IsOwnerOrReadOnly
+
+# this is for searching purpose this can let you search in content list based on different fields
 
 
 class ContentFilter(filters.FilterSet):
@@ -42,25 +42,23 @@ class ContentFilter(filters.FilterSet):
         model = Content
         fields = ['title', 'body', 'summary', 'category', 'author']
 
+# this is listing down all the contents
+
 
 class ContentListAPIView(ListAPIView):
     queryset = Content.objects.all()
     serializer_class = ContentSerializer
     filter_backends = [DjangoFilterBackend]
-    # search_fields = ['title', 'body', 'summary', 'category', 'author']
     filterset_class = ContentFilter
-    # def get_queryset(self, *args, **kwargs):
-    #     if 'q' in self.request.GET and self.request.GET['q']:
-    #         q = self.request.GET['q']
-    #         queryset = Content.objects.filter(title__icontains=q)
-    #     else:
-    #         queryset = Content.objects.all()
-    #     return queryset
+
+# ContentDetailAPIView list details of one  particular content
 
 
 class ContentDetailAPIView(RetrieveAPIView):
     queryset = Content.objects.all()
     serializer_class = ContentSerializer
+
+# this is for updating contents and only for logged in user and the owner of the content
 
 
 class ContentUpdateAPIView(RetrieveUpdateAPIView):
@@ -71,11 +69,15 @@ class ContentUpdateAPIView(RetrieveUpdateAPIView):
     def perform_update(self, serializer):
         serializer.save(author=self.request.user)
 
+# this is for deleting contents and only for logged in user and the owner of the content
+
 
 class ContentDeleteAPIView(DestroyAPIView):
     queryset = Content.objects.all()
     serializer_class = ContentSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+# this view is for creating the content and only allows
 
 
 class ContentCreateView(CreateAPIView):
@@ -84,10 +86,8 @@ class ContentCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, format=None):
-        # profile = User.objects.get(pk=1)
         content = Content(author=self.request.user)
         serializer = ContentCreateSerializer(content, data=request.data)
-        # data = {}
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

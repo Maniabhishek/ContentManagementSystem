@@ -4,18 +4,8 @@ from django.urls import reverse_lazy
 from .models import Content
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .filters import ContentFilter
-# Create your views here.
 
 
-# class ContentListView(ListView):
-#     model = Content
-#     template_name = 'appcms/home.html'
-#     context_object_name = 'contents'
-
-#     def get_queryset(self):
-#         qs = self.model.objects.all()
-#         product_filtered_list = ContentFilter(self.request.GET, queryset=qs)
-#         return product_filtered_list.qs
 def Search(request):
     contents = Content.objects.all()
     myFilter = ContentFilter()

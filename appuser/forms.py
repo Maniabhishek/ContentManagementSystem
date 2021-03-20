@@ -12,16 +12,7 @@ class CreateUser_Register(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email',
                   'password1', 'password2')
 
-    # def clean_password2(self):
-    #     password1 = self.cleaned_data.get("password1")
-    #     password2 = self.cleaned_data.get("password2")
-    #     if password1 and password2 and password1 != password2:
-    #         raise ValidationError(
-    #             self.error_messages['password_mismatch'],
-    #             code='password_mismatch',
-    #         )
-
-    #     return password2
+# this is profile form we are using it to store the phone and pin , all the field level validation is done in api
 
 
 class ProfileForm(forms.ModelForm):
@@ -41,6 +32,3 @@ class ProfileForm(forms.ModelForm):
             raise forms.ValidationError(
                 "Check the phone number too many digits")
         return phone_passed
-
-    # def clean_pincode(self):
-    #     pincode_passed = self.cleaned_data.get("pincode")
