@@ -3,7 +3,7 @@ This is a django rest-framework project for creating a post with all the crud fu
 Setup :
 1.To setup the project we first need to clone : use command git clone https://github.com/Maniabhishek/ContentManagementSystem.git
 2.Run all the migrations , using python manage.py makemigrations and then python manage.py migrate
-3.then create admin user using django seeding python manage.py loaddata appuser/fixtures/admindata.json
+3.then create admin user using django seeding python manage.py loaddata appuser/fixtures/admindata.json (if in case you get the error saying UTF-8 then just save the                                   admindata.json file again in utf-8 format with the samedata )
       admin user will be created : with email= admin@gmail.com , password = Password , username=admin
       2 user will be created : with email =json@gmail.com password = Jsonroy12 , username = jsonroy and email =test@gmail.com password = Testuser12 , username = testuser
 
