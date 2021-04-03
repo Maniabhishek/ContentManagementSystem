@@ -11,7 +11,4 @@ urlpatterns = [
          ContentDeleteAPIView.as_view(), name='contentDelete'),
     path('content/create', ContentCreateView.as_view(), name='contentCreate'),
 
-
-
-
 ]
